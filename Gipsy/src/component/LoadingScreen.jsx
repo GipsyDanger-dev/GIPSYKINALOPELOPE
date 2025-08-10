@@ -58,7 +58,7 @@ export const LoadingScreen = ({ onComplete }) => {
     const keySequence = useRef("");
     const secretCode = "LUMINSZN";
 
-    const targetScrambleText = isLuminMode ? "*LUMIN_SZN*" : "<Gipsy.Dev/>";
+    const targetScrambleText = isLuminMode ? "ZNLUMINSCENT" : "<Gipsy.Dev/>";
     const scrambledText = useTextScramble(targetScrambleText);
 
     const statusSequence = [
