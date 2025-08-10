@@ -16,8 +16,8 @@ const apiEndpoints = Array(30).fill("GipsyDanger-dev™");
 // --- DATA UNTUK EASTER EGG (DENGAN LINK GITHUB) ---
 const creators = [
   { name: 'GipsyDanger-dev (Adam Fairuz)', role: 'Lead Developer & Designer', link: 'https://github.com/GipsyDanger-dev' },
-  { name: 'znlumins (Daffa Ahmad Al Attas)', role: 'Front-End Refinement & UI/UX', link: 'https://github.com/znlumins' }, // Pastikan link ini benar
-  { name: 'Gemini AI by Google', role: 'Code Assistant & Idea Generator', link: null }, // Tidak punya link, jadi tombol tidak akan muncul
+  { name: 'znlumins (Daffa Ahmad Al Attas)', role: 'Front-End Refinement & UI/UX', link: 'https://github.com/znlumins' },
+  { name: 'Gemini AI by Google', role: 'Code Assistant & Idea Generator', link: null },
 ];
 
 
@@ -32,21 +32,18 @@ const CreditsModal = ({ onClose }) => {
         <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
           <FaTimes size={20} />
         </button>
-        <h3 className="text-2xl font-bold text-white mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Dibuat Oleh</h3>
+        {/* --- BARIS INI TELAH DIPERBAIKI --- */}
+        <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Dibuat Oleh</h3>
         
-        {/* Kontainer untuk daftar kreator */}
         <div className="space-y-3">
           {creators.map(creator => (
-            // Setiap baris kreator sekarang menggunakan flexbox
             <div key={creator.name} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
               
-              {/* Bagian Kiri: Nama dan Peran */}
               <div>
                 <p className="font-semibold text-lg text-white">{creator.name}</p>
                 <p className="text-sm text-gray-400">{creator.role}</p>
               </div>
 
-              {/* Bagian Kanan: Tombol GitHub (Hanya muncul jika link ada) */}
               {creator.link && (
                 <a 
                   href={creator.link} 

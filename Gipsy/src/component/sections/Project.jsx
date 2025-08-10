@@ -46,33 +46,42 @@ const projectsData = [
   },
 ];
 
-// ===== KARTU PROYEK DENGAN FIX TOTAL =====
+// ===== KARTU PROYEK DENGAN PERBAIKAN UNTUK MOBILE =====
 const ProjectCard = ({ project }) => {
   return (
-    <div className="relative group overflow-hidden rounded-2xl border border-white/10 shadow-lg 
-                   transform hover:-translate-y-2 transition-all duration-500
-                   hover:shadow-2xl hover:shadow-cyan-500/40">
+    // PERBAIKAN 1: Tambahkan `tabIndex="0"` agar kartu bisa di-tap/fokus di mobile.
+    // Tambahkan juga `focus-within:*` untuk meniru efek `hover:*`.
+    <div 
+      tabIndex="0" 
+      className="relative group overflow-hidden rounded-2xl border border-white/10 shadow-lg 
+                 transform hover:-translate-y-2 focus-within:-translate-y-2 transition-all duration-500
+                 hover:shadow-2xl hover:shadow-cyan-500/40 
+                 focus-within:shadow-2xl focus-within:shadow-cyan-500/40
+                 outline-none" // Menghilangkan outline default saat fokus
+    >
       
-      {/* Gambar */}
+      {/* Gambar (tetap sama) */}
       <img 
         src={project.imageUrl} 
         alt={project.title}
         className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-700"
       />
       
-      {/* Gradien gelap di atas gambar */}
+      {/* Gradien gelap (tetap sama) */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent"></div>
 
       {/* Kontainer untuk semua konten teks */}
       <div className="absolute inset-0 p-6 flex flex-col justify-end">
         
-        {/* Judul Proyek (Selalu terlihat) */}
-        <h3 className="text-xl font-bold text-white transition-all duration-300 transform group-hover:-translate-y-2">
+        {/* PERBAIKAN 2: Judul juga akan bergerak saat kartu di-tap (fokus) */}
+        <h3 className="text-xl font-bold text-white transition-all duration-300 transform 
+                       group-hover:-translate-y-2 group-focus-within:-translate-y-2">
           {project.title}
         </h3>
 
-        {/* Detail Proyek (Muncul saat hover) */}
-        <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+        {/* PERBAIKAN 3: Detail proyek akan muncul saat hover (desktop) ATAU saat di-tap (mobile) */}
+        <div className="mt-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 
+                       transition-opacity duration-500 delay-100">
           <p className="text-gray-300 mb-4 text-sm leading-relaxed">{project.description}</p>
           
           <div className="flex flex-wrap gap-2 mb-5">
@@ -106,7 +115,7 @@ const ProjectCard = ({ project }) => {
 };
 
 
-// === KOMPONEN UTAMA (BACKGROUND HITAM PEKAT) ===
+// === KOMPONEN UTAMA (TIDAK ADA PERUBAHAN) ===
 export const Project = () => {
   return (
     <section

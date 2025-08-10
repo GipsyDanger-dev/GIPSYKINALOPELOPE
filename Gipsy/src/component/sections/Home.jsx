@@ -23,10 +23,10 @@ export const Home = () => {
             Halo, saya Adam Fairuz Akmal Aryaguna, seorang video editor, developer, dan blockchain enthusiast yang menggabungkan kreativitas dan teknologi dalam setiap proyek. Berpengalaman di Adobe Premiere Pro, After Effects, pengembangan web, dan blockchain. Saya selalu tertarik untuk menciptakan solusi digital inovatif. 🚀
           </p>
           <div className="flex justify-center space-x-4">
-            <a href="#Project" className="bg-blue-600 text-white py-3 px-8 rounded-full font-semibold text-lg transition-transform transform hover:scale-105 hover:bg-blue-700 shadow-lg">
+            <a href="#projects" className="bg-blue-600 text-white py-3 px-8 rounded-full font-semibold text-lg transition-transform transform hover:scale-105 hover:bg-blue-700 shadow-lg">
               View Project
             </a>
-            <a href="#Contact" className="border-2 border-white text-white py-3 px-8 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105">
+            <a href="#contact" className="border-2 border-white text-white py-3 px-8 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105">
               Contact Me
             </a>
           </div>
