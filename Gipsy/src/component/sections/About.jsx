@@ -1,10 +1,8 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 import { FaReact, FaPython, FaJava, FaHtml5, FaCss3Alt, FaRust, FaBriefcase, FaGraduationCap } from 'react-icons/fa';
 import { SiTailwindcss, SiJavascript, SiMongodb, SiDart } from 'react-icons/si';
-// ===== 1. PERBAIKAN: Menghapus import MouseEvent yang tidak perlu & menyebabkan error =====
 import { useState, useRef } from 'react'; 
 
-// Data skills, educationData, dan experienceData tidak berubah
 const skills = [
   { name: "React", icon: <FaReact /> },
   { name: "Tailwind CSS", icon: <SiTailwindcss /> },
@@ -48,13 +46,11 @@ const experienceData = [
   },
 ];
 
-
-// Komponen SpotlightCard dengan sintaks JavaScript yang BENAR
+// Komponen SpotlightCard tetap ada untuk bagian lain
 const SpotlightCard = ({ children, className = '' }) => {
   const cardRef = useRef(null);
   const [style, setStyle] = useState({});
 
-  // ===== 2. PERBAIKAN: Menghapus sintaks TypeScript ": MouseEvent" dari parameter =====
   const onMouseMove = (e) => {
     if (!cardRef.current) return;
     const { left, top } = cardRef.current.getBoundingClientRect();
@@ -91,26 +87,27 @@ const SpotlightCard = ({ children, className = '' }) => {
 
 export const About = () => {
   return (
-    // Gunakan kelas 'bg-modern-dark' dari CSS Anda atau 'bg-gray-900' jika belum dibuat
     <section id="about" className="min-h-screen flex items-center justify-center py-20 bg-modern-dark"> 
       <RevealOnScroll>
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
+        <div className="max-w-4xl mx-auto px-4 space-y-12">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
             About Me
           </h2>
 
-          <div className="bg-gray-800/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-12">
+          <SpotlightCard>
             <p className="text-gray-300 text-lg leading-relaxed text-center">
               Halo! Saya Adam, seorang video editor, developer, dan blockchain enthusiast dengan minat besar dalam dunia teknologi dan kreativitas. Saya selalu terbuka untuk kolaborasi dan proyek baru yang menantang. 🚀
             </p>
-          </div>
+          </SpotlightCard>
           
-          <div className="bg-gray-800/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-12">
+          {/* ===== INI PERUBAHAN YANG SEBENARNYA ===== */}
+          {/* MENGGUNAKAN DIV BIASA, BUKAN SPOTLIGHTCARD */}
+          <div className="bg-gray-800/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-white mb-8 text-center">My Skillset</h3>
               <div className="grid grid-cols-3 sm:grid-cols-5 gap-6">
                 {skills.map((skill) => (
-                  <div key={skill.name} className="group flex flex-col items-center justify-center text-center p-3 transition-all duration-300">
-                    <div className="text-4xl text-gray-400 group-hover:text-cyan-400 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                  <div key={skill.name} className="group flex flex-col items-center justify-center text-center p-3">
+                    <div className="text-4xl text-gray-400 group-hover:text-cyan-400 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
                         {skill.icon}
                     </div>
                     <span className="mt-2 font-medium text-gray-400 group-hover:text-white text-sm transition-colors duration-300">{skill.name}</span>
@@ -120,7 +117,7 @@ export const About = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Kolom Pendidikan */}
+            {/* Bagian Education & Experience TETAP menggunakan SpotlightCard */}
             <SpotlightCard>
                 <h3 className="text-2xl font-bold text-white mb-8 text-center">Education</h3>
                 <div className="relative space-y-10">
@@ -141,8 +138,6 @@ export const About = () => {
                     ))}
                 </div>
             </SpotlightCard>
-
-            {/* Kolom Pengalaman */}
             <SpotlightCard>
                 <h3 className="text-2xl font-bold text-white mb-8 text-center">Experience</h3>
                  <div className="relative space-y-10">
@@ -169,12 +164,3 @@ export const About = () => {
     </section>
   );
 };
-
-// Jangan lupa untuk menambahkan ini di file CSS global Anda (misal: index.css)
-/*
-.bg-modern-dark {
-  background-color: #0b1120;
-  background-image: radial-gradient(at top, hsla(214, 60%, 15%, 1), transparent 50%),
-                    radial-gradient(at bottom, hsla(240, 40%, 10%, 1), transparent 60%);
-}
-*/
