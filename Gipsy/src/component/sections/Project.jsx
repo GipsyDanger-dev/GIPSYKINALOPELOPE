@@ -1,133 +1,138 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 
-// === DATA PROYEK (TETAP SAMA) ===
+// fallback image bila imageUrl kosong/gagal dimuat
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070&auto=format&fit=crop";
+
+// === DATA PROYEK ===
 const projectsData = [
   {
     title: "AI-Powered Inventory System",
+    summary: "Sistem manajemen gudang berbasis AI untuk optimasi inventaris dan perkiraan permintaan.",
     description: "Developed a warehouse management system using AI for demand forecasting and route optimization, reducing operational costs.",
     tags: ["React", "Python", "FastAPI", "MongoDB"],
     imageUrl: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1974&auto=format&fit=crop",
     projectUrl: "#",
   },
   {
-    title: "Cinematic Short Movie: 'Echoes'",
+    title: "Cinematic Short — Echoes",
+    summary: "Editor utama untuk film pendek, menangani editing, grading, dan motion graphics.",
     description: "Lead editor and script consultant. Responsible for editing, color grading, motion graphics, and refining the narrative flow.",
     tags: ["Premiere Pro", "After Effects", "Blender"],
-    imageUrl: "https://images.unsplash.com/photo-1754630551378-e1ecffe9da6b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imageUrl: "https://images.unsplash.com/photo-1505682634904-d7c5dc72f82d?q=80&w=2070&auto=format&fit=crop",
     projectUrl: "#",
   },
   {
-    title: "Decentralized Voting Platform",
-    description: "A secure and transparent voting application built on a custom blockchain solution to ensure data integrity and immutability.",
-    tags: ["Rust", "Next.js", "GraphQL", "Docker"],
-    imageUrl: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1932&auto=format&fit=crop",
-    projectUrl: "#",
-  },
-  {
-    title: "Modern Portfolio Website",
-    description: "The portfolio you are looking at now. Designed with a dark aesthetic, built with React and Tailwind CSS for fluid animations.",
-    tags: ["React", "TailwindCSS", "Framer Motion"],
+    title: "E-Commerce Platform (Vue + Node)",
+    summary: "Platform penjualan online dengan fitur katalog, keranjang, dan checkout.",
+    description: "Full-stack e-commerce using Vue frontend and Node/Express backend with payment integration.",
+    tags: ["Vue", "Node.js", "Express"],
     imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
     projectUrl: "#",
   },
   {
-    title: "E-Commerce Cloud Platform",
-    description: "Scalable e-commerce backend deployed on AWS, handling thousands of transactions per second with a microservices architecture.",
-    tags: ["Java", "Spring Boot", "AWS", "Kubernetes"],
-    imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop",
+    title: "Realtime Chat App (Angular + Firebase)",
+    summary: "Aplikasi chat real-time dengan autentikasi dan storage pesan terpusat.",
+    description: "Realtime messaging using Angular and Firebase (Auth, Firestore, Hosting).",
+    tags: ["Angular", "Firebase", "TypeScript"],
+    imageUrl: "https://images.unsplash.com/photo-1600267165517-8c5b08b158d2?q=80&w=2070&auto=format&fit=crop",
     projectUrl: "#",
   },
   {
-    title: "Interactive Data Visualization",
-    description: "A web-based tool for visualizing complex datasets with interactive charts and maps, built using D3.js and React.",
-    tags: ["D3.js", "React", "Node.js", "PostgreSQL"],
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    title: "Landing Page Modern (Svelte + Tailwind)",
+    summary: "Landing page produk responsif dengan animasi halus dan CTA kuat.",
+    description: "Built a fast, accessible landing page using Svelte and TailwindCSS with A/B-ready sections.",
+    tags: ["Svelte", "TailwindCSS", "Supabase"],
+    imageUrl: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
+    projectUrl: "#",
+  },
+  {
+    title: "Personal Portfolio (HTML/CSS/JS)",
+    summary: "Website portfolio untuk menampilkan proyek, blog kecil, dan kontak.",
+    description: "Static portfolio site with responsive layout, project galleries and contact form integration.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    imageUrl: "https://images.unsplash.com/photo-1618335829737-2228915674e0?q=80&w=2070&auto=format&fit=crop",
     projectUrl: "#",
   },
 ];
 
-// ===== KARTU PROYEK DENGAN PERBAIKAN UNTUK MOBILE =====
+// ===== KARTU PROYEK =====
 const ProjectCard = ({ project }) => {
+  const imgSrc = project.imageUrl || FALLBACK_IMAGE;
+
   return (
-    // PERBAIKAN 1: Tambahkan `tabIndex="0"` agar kartu bisa di-tap/fokus di mobile.
-    // Tambahkan juga `focus-within:*` untuk meniru efek `hover:*`.
-    <div 
-      tabIndex="0" 
-      className="relative group overflow-hidden rounded-2xl border border-white/10 shadow-lg 
-                 transform hover:-translate-y-2 focus-within:-translate-y-2 transition-all duration-500
-                 hover:shadow-2xl hover:shadow-cyan-500/40 
-                 focus-within:shadow-2xl focus-within:shadow-cyan-500/40
-                 outline-none" // Menghilangkan outline default saat fokus
+    <div
+      tabIndex="0"
+      className="relative group h-72 overflow-hidden rounded-2xl border border-white/10 shadow-lg
+                 transform transition-all duration-500 ease-in-out hover:-translate-y-2 focus-within:-translate-y-2
+                 hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] focus-within:shadow-[0_0_25px_rgba(59,130,246,0.6)]
+                 outline-none"
     >
-      
-      {/* Gambar (tetap sama) */}
-      <img 
-        src={project.imageUrl} 
+      {/* Gambar Latar Belakang */}
+      <img
+        src={imgSrc}
         alt={project.title}
-        className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-700"
+        loading="lazy"
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = FALLBACK_IMAGE;
+        }}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500
+                   group-hover:scale-105"
       />
-      
-      {/* Gradien gelap (tetap sama) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent"></div>
 
-      {/* Kontainer untuk semua konten teks */}
-      <div className="absolute inset-0 p-6 flex flex-col justify-end">
-        
-        {/* PERBAIKAN 2: Judul juga akan bergerak saat kartu di-tap (fokus) */}
-        <h3 className="text-xl font-bold text-white transition-all duration-300 transform 
-                       group-hover:-translate-y-2 group-focus-within:-translate-y-2">
-          {project.title}
-        </h3>
+      {/* Lapisan Gradasi Gelap */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent"></div>
 
-        {/* PERBAIKAN 3: Detail proyek akan muncul saat hover (desktop) ATAU saat di-tap (mobile) */}
-        <div className="mt-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 
-                       transition-opacity duration-500 delay-100">
-          <p className="text-gray-300 mb-4 text-sm leading-relaxed">{project.description}</p>
-          
-          <div className="flex flex-wrap gap-2 mb-5">
-            {project.tags.map((tag, key) => (
-              <span 
-                key={key} 
-                className="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-xs font-semibold
-                           transform hover:-translate-y-1 transition-all duration-200 cursor-pointer"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          
-          <a
-            href={project.projectUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-x-2 bg-blue-600 text-white font-semibold py-2 px-5 rounded-lg 
-                       hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
+      {/* Kontainer Konten */}
+      <div className="relative h-full p-4 sm:p-6 flex flex-col justify-end">
+        <div>
+          <h3 className="text-lg sm:text-xl font-bold text-white">{project.title}</h3>
+          <p className="text-sm text-gray-300 mt-1 line-clamp-2">{project.summary}</p>
+
+          {/* Detail muncul saat hover */}
+          <div
+            className="overflow-hidden max-h-0 opacity-0
+                       transition-all duration-500 ease-in-out
+                       group-hover:max-h-40 group-hover:opacity-100
+                       group-focus-within:max-h-40 group-focus-within:opacity-100"
           >
-            View Project
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300">
-              <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
-            </svg>
-          </a>
+            <div className="mt-4">
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag, key) => (
+                  <span key={key} className="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-xs font-semibold">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={project.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-x-2 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg
+                           hover:bg-blue-700 transition-colors duration-300"
+              >
+                View Project
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-
-// === KOMPONEN UTAMA (TIDAK ADA PERUBAHAN) ===
+// === KOMPONEN UTAMA ===
 export const Project = () => {
   return (
-    <section
-      id="projects"
-      className="min-h-screen flex items-center justify-center py-20 bg-black" 
-    >
+    <section id="projects" className="min-h-screen flex items-center justify-center py-20 bg-black">
       <RevealOnScroll>
-        <div className="max-w-7xl mx-auto px-4"> 
+        <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold mb-16 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
             Featured Projects
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          {/* Grid: 1 kolom di mobile, 2 kolom di tablet, 3 kolom di desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {projectsData.map((project, index) => (
               <ProjectCard key={index} project={project} />
             ))}
