@@ -10,7 +10,7 @@ import { Footer } from './component/Footer';
 import { Contact } from './component/sections/Contact';
 import "./index.css";
 import { SplashCursor } from './component/SplashCursor';
-
+import { Analytics } from "@vercel/analytics/next"
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
       } bg-black text-gray-100 `}
       >
         <SplashCursor />
+        <Analytics/>
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Home />
